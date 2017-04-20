@@ -7,42 +7,39 @@ table {
   text-align: left;
   width: 100%;
 }
-tr {
-  color: #4D1A75;
-  // &:nth-child(even) {
-  //   background-color: #F4E3FF;
-  //   color: #4D1A75;
-  // }
-}
 
-td,th {
-  padding: 8px 8px;
-}
-th {
-  background-color:#652299;
-  color:#FFFFFF;
-  font-size: 13px;
-  font-weight: bold;
-  border-left: 1px solid #714399;
-  &:first-child {
-    border: none;
-  }
-}
-td {
-  border-left: 1px solid #E7BDFF;
-  font-size: 14px;
-  font-weight: normal;
-  &:nth-child(even) {
-    background-color: #F4E3FF;
+tr {
     color: #4D1A75;
+    &:nth-child(even) {
+      background-color: #F4E3FF;
+      color: #4D1A75;
+    }
   }
-  &:first-child {
-    border-left: none;
+  td,th {
+    padding: 8px 8px;
   }
-  &:last-child td {
-    border-bottom: none;
+  th {
+    background-color:#652299;
+    color:#FFFFFF;
+    font-size: 13px;
+    font-weight: bold;
+    border-left: 1px solid #714399;
+    &:first-child {
+      border: none;
+    }
   }
-}
+  td {
+    border-left: 1px solid #E7BDFF;
+    font-size: 14px;
+    font-weight: normal;
+    &:first-child {
+      border-left: none;
+    }
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+
 
 
     // table tfoot td div {
