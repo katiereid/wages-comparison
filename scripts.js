@@ -15,22 +15,13 @@ function CreateTableFromJSON() {
 
   var table = document.createElement("table");
   var tableInfo = JSON.parse(request.responseText);
-  var col = [];
+  var col = (tableInfo.data[0].length).toString(); //assume the first array has the same # of indeces has the other arrays
 
-  for (var i = 0; i < tableInfo.data.length; i++) {   //I 50% understand this... confused about var p and indexof
-    for (var p in tableInfo.data[i]) {
-      if (col.indexOf(p) === -1) {
-           col.push(p);
-      }
-    }
-    // col.push(tableInfo.data[i][0]);   <--why doesn't this work? instead of the second for loop with var p :(
-
-  }
   // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
 
   var tr = table.insertRow(-1);                   // INSERT NEXT ROW BELOW THE PREVIOUS
 
-  for (var i = 0; i < col.length; i++) {
+  for (var i = 0; i < col; i++) {
       var th = document.createElement("th");      // TABLE HEADER
       tr.appendChild(th);
   };
@@ -38,16 +29,18 @@ function CreateTableFromJSON() {
   // ADD JSON DATA TO THE TABLE AS ROWS.
   for (var i = 0; i < tableInfo.data.length; i++) {
       tr = table.insertRow(-1);                            //why can't this use the tr declaration from above?
-      for (var j = 0; j < col.length; j++) {
+      for (var j = 0; j < col; j++) {
           var tableCell = tr.insertCell(-1);
-          tableCell.innerHTML = tableInfo.data[i][col[j]];
+          tableCell.innerHTML = (tableInfo.data[i][[j]]);
       };
   };
+
+
 
   //HIDE EXTRA COLUMNS and REPLACE HEADER TEXT todo: make this more efficient!
 
   function HideColumns() {
-      // var hiddenCol = [2,3,4,5,6,7,8,11,12,14,15,16,17,18,20];
+      // var hiddenCol = [2,3,4,5,6,7,8,11,12,14,15,16,17,18,20];  //todo: I'd like to loop through the array and hide columns this way
       // var hiddenColLength = hiddenCol.length;
     $('th:nth-child(1)').html("#");
     $('td:nth-child(2),th:nth-child(2)').hide();
@@ -73,6 +66,9 @@ function CreateTableFromJSON() {
     return;
   };
 
+  //PAGINATION
+
+
 
   // ADD TABLE TO A CONTAINER
   var divContainer = document.getElementById("showTable");
@@ -85,13 +81,21 @@ $(document).ready(function(){
  CreateTableFromJSON();
 });
 
-
+//////OLD STUFF I MIGHT WANT BACK
 // for (var i=0; i < tableInfo.data.length; i++) {
 //   var subArray = tableInfo.data[i];
 
 //     console.log(subArray[8]);
 
 // }
+
+// for (var i = 0; i < tableInfo.data.length; i++) {   //I 50% understand this... confused about var p and indexof
+  //   for (var p in tableInfo.data[i]) {
+  //     if (col.indexOf(p) === -1) {
+  //          col.push(p);
+  //     }
+  //   }
+    // col.push(tableInfo.data[i][0]);   <--why doesn't this work? instead of the second for loop with var p :(
 
 //arrays - 8 = job title
       // -9 = female wage
