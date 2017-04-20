@@ -1,59 +1,46 @@
-// GET /resource/3k2p-39jp.json HTTP/1.1
-// Host: data.seattle.gov
-// Accept: application/json
-// X-App-Token: SCC1c0Cove7ypmBeuf3dTX2WZOk6qEfCAki6MoNi
-
-//GET JSON FROM SEATTLE API
+//GET JSON FROM CITY OF SEATTLE API
 
 var request = new XMLHttpRequest();
 request.open("GET", "https://data.seattle.gov/api/views/cf52-s8er/rows.json?api_key=SCC1c0Cove7ypmBeuf3dTX2WZOk6qEfCAki6MoNi", false);
 request.send();
 
-////CHECK STATUS IN CONSOLE
+////check status in console
 
 console.log(request.status);
 console.log(request.statusText);
 
-// var json= request.responseText;
-// var myArr = JSON.parse(json);
-
 function CreateTableFromJSON() {
 
-  //CREATE A TABLE
+  //CREATE A TABLE inspo/source: http://www.encodedna.com/javascript/populate-json-data-to-html-table-using-javascript.htm
 
+  var table = document.createElement("table");
   var tableInfo = JSON.parse(request.responseText);
-
   var col = [];
 
-  for (var i = 0; i < tableInfo.data.length; i++) {
-      for (var key in tableInfo.data[i]) {
-          if (col.indexOf(key) === -1) {
-              col.push(key);
-          }
+  for (var i = 0; i < tableInfo.data.length; i++) {   //I 50% understand this... confused about var p and indexof
+    for (var p in tableInfo.data[i]) {
+      if (col.indexOf(p) === -1) {
+           col.push(p);
       }
+    }
+    // col.push(tableInfo.data[i][0]);   <--why doesn't this work? instead of the second for loop with var p :(
+
   }
-
-  // CREATE DYNAMIC TABLE.
-  var table = document.createElement("table");
-
   // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
 
-  var tr = table.insertRow(-1);                   // TABLE ROW.
+  var tr = table.insertRow(-1);                   // INSERT NEXT ROW BELOW THE PREVIOUS
 
   for (var i = 0; i < col.length; i++) {
-      var th = document.createElement("th");      // TABLE HEADER.
-      th.innerHTML = col[i];
+      var th = document.createElement("th");      // TABLE HEADER
       tr.appendChild(th);
   };
 
   // ADD JSON DATA TO THE TABLE AS ROWS.
   for (var i = 0; i < tableInfo.data.length; i++) {
-
-      tr = table.insertRow(-1);
-
+      tr = table.insertRow(-1);                            //why can't this use the tr declaration from above?
       for (var j = 0; j < col.length; j++) {
-          var tabCell = tr.insertCell(-1);
-          tabCell.innerHTML = tableInfo.data[i][col[j]];
+          var tableCell = tr.insertCell(-1);
+          tableCell.innerHTML = tableInfo.data[i][col[j]];
       };
   };
 
@@ -87,7 +74,7 @@ function CreateTableFromJSON() {
   };
 
 
-  // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+  // ADD TABLE TO A CONTAINER
   var divContainer = document.getElementById("showTable");
   divContainer.innerHTML = "";
   divContainer.appendChild(table);
@@ -99,15 +86,11 @@ $(document).ready(function(){
 });
 
 
-
-
-
-
 // for (var i=0; i < tableInfo.data.length; i++) {
 //   var subArray = tableInfo.data[i];
-//   // for (var j=0; j< tableInfo.data[i].length; j++) {
+
 //     console.log(subArray[8]);
-//   // }
+
 // }
 
 //arrays - 8 = job title
