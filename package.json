@@ -1,0 +1,21 @@
+{
+  "name": "wages-comparison",
+  "version": "1.0.0",
+  "description": "code test ",
+  "main": "scripts.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katiereid/wages-comparison.git"
+  },
+  "author": "katie reid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/katiereid/wages-comparison/issues"
+  },
+  "homepage": "https://github.com/katiereid/wages-comparison#readme"
+}

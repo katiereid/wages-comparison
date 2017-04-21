@@ -1,0 +1,44 @@
+body {
+  font-family: Calibri, sans-serif; }
+
+h1 {
+  color: #350f52;
+  font-size: 32px;
+  text-align: center; }
+
+table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%; }
+
+tr {
+  color: #350f52; }
+  tr:nth-child(even) {
+    background-color: #F4E3FF;
+    color: #350f52; }
+
+td, th {
+  padding: 8px 8px; }
+
+th {
+  background-color: #350f52;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+  border-left: 1px solid #350f52; }
+
+th:first-child {
+  border: none; }
+
+td {
+  border-left: 1px solid #E7BDFF;
+  font-size: 14px;
+  font-weight: normal; }
+
+td:first-child {
+  border-left: none; }
+
+td:last-child {
+  border-bottom: none; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,50 @@
+$dark-purple: #350f52;
+
+
+body {
+  font-family: Calibri, sans-serif;
+}
+h1 {
+  color: $dark-purple;
+  font-size: 32px;
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+
+tr {
+  color: $dark-purple;
+  &:nth-child(even) {
+    background-color: #F4E3FF;
+    color: $dark-purple;
+  }
+}
+td, th {
+  padding: 8px 8px;
+}
+
+th {
+  background-color: $dark-purple;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+  border-left: 1px solid $dark-purple;
+}
+th:first-child {
+  border: none;
+}
+td {
+  border-left: 1px solid #E7BDFF;
+  font-size: 14px;
+  font-weight: normal;
+}
+td:first-child {
+  border-left: none;
+}
+td:last-child {
+  border-bottom: none;
+}
+
