@@ -17,6 +17,7 @@ function CreateTableFromJSON() {
   var tableInfo = JSON.parse(request.responseText);
   var col = (tableInfo.data[0].length).toString(); //assume the first array has the same # of indeces has the other arrays
 
+  table.setAttribute("id", "myTable");
   // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
 
   var tr = table.insertRow(-1);                   // INSERT NEXT ROW BELOW THE PREVIOUS
@@ -34,6 +35,8 @@ function CreateTableFromJSON() {
           tableCell.innerHTML = (tableInfo.data[i][[j]]);
       };
   };
+
+
 
 
 
@@ -67,14 +70,48 @@ function CreateTableFromJSON() {
   };
 
   //PAGINATION
+    //source/inspo: https://codepen.io/bastony/post/tablesortingtutorial-js  & http://stackoverflow.com/questions/19605078/how-to-use-pagination-on-html-tables
 
+  function PaginateTable() {
+        $('#myTable').after('<div id="nav"></div>');
+        var rowsShown = 25;
+        var table = document.getElementById('myTable');  // get the table element
+        var rowsTotal = table.rows.length;
+        var numPages = Math.ceil(rowsTotal/rowsShown);
+        var firstRow = table.rows[0];
+        var tableRows = $('#myTable tbody tr');
 
+        //make the pagination nav
+        for(i = 0;i < numPages;i++) {
+            var pageNum = i + 1;
+            $('#nav').append('<a href="#" rel="'+i+'">'+pageNum+'</a> ');
+        }
+
+        $(tableRows).hide();                         //hide all the rows
+        $(tableRows).slice(0, rowsShown).show();     // but show the first 25
+
+        $('#nav a:first').addClass('active');           //make the first page btn active
+
+        $('#nav a').bind('click', function(){          //bind click event to nav btn to do:
+            $('#nav a').removeClass('active');             //remove active class from btn
+            $(this).addClass('active');                    //add the active class to the btn that was click
+            var currPage = $(this).attr('rel');            //set current page to rel value from clicked a tag
+            var startItem = currPage * rowsShown;          //set start item to be (the current page x # of items per page) to get the correct items to show
+            var endItem = startItem + rowsShown;           //set the end item to be 25 rows past the start item
+
+                                                         // hide all rows except the 25 that go with that page
+            $(tableRows).css('opacity','0.0').hide().slice(startItem, endItem).css('display','table-row').animate({opacity:1}, 300);
+            $(firstRow).css({'display' : 'table-row', 'opacity' : '1'});  //show the header always
+        });
+  };
 
   // ADD TABLE TO A CONTAINER
-  var divContainer = document.getElementById("showTable");
+  var divContainer = document.getElementById("tableDiv");
   divContainer.innerHTML = "";
   divContainer.appendChild(table);
   HideColumns();
+  PaginateTable();
+
 };
 
 $(document).ready(function(){
