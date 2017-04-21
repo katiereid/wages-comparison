@@ -1,50 +1,149 @@
 $dark-purple: #350f52;
+$light-purple: #F4E3FF;
+
+// Flexbox display
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+// Flex Flow Direction
+// - applies to: flex containers
+// row | row-reverse | column | column-reverse
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+@mixin flex-wrap($wrap) {
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+
+// Axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around
+@mixin justify-content($justify) {
+  -webkit-justify-content: $justify;
+  -moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+  justify-content: $justify;
+  -ms-flex-pack: $justify;
+}
+
+// Cross-axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | baseline | stretch
+@mixin align-items($align) {
+  -webkit-align-items: $align;
+  -moz-align-items: $align;
+  -ms-align-items: $align;
+  align-items: $align;
+}
 
 
 body {
-  font-family: Calibri, sans-serif;
-}
-h1 {
-  color: $dark-purple;
-  font-size: 32px;
-  text-align: center;
-}
-table {
-  border-collapse: collapse;
-  text-align: left;
-  width: 100%;
-}
-
-tr {
-  color: $dark-purple;
-  &:nth-child(even) {
-    background-color: #F4E3FF;
+  font-family: 'Open Sans', sans-serif;
+  h1 {
     color: $dark-purple;
+    font-size: 32px;
+    text-align: center;
   }
-}
-td, th {
-  padding: 8px 8px;
-}
+  .table-options {
+    width: 80%;
+    padding: 10px;
+    margin: 15px auto;
+    @include flexbox();
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include justify-content(space-between);
+    button {
+      width: 200px;
+      height: 40px;
+      background-color: $light-purple;
+      border: 1px solid $dark-purple;
+      border-radius: 2px;
+      color: $dark-purple;
+      font-size: 12px;
+      &:hover {
+        opacity: .8;
+        cursor: pointer;
+      }
+    }
+  }
+  table {
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 475px;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid $dark-purple;
+    tr {
+      color: $dark-purple;
+      &:nth-child(even) {
+        background-color: $light-purple;
+        color: $dark-purple;
+      }
+    }
+    td, th {
+      padding: 8px 8px;
+    }
 
-th {
-  background-color: $dark-purple;
-  color: #FFFFFF;
-  font-size: 13px;
-  font-weight: bold;
-  border-left: 1px solid $dark-purple;
-}
-th:first-child {
-  border: none;
-}
-td {
-  border-left: 1px solid #E7BDFF;
-  font-size: 14px;
-  font-weight: normal;
-}
-td:first-child {
-  border-left: none;
-}
-td:last-child {
-  border-bottom: none;
+    th {
+      background-color: $dark-purple;
+      color: #FFFFFF;
+      font-size: 13px;
+      border-left: 1px solid $dark-purple;
+      &:first-child {
+        border: none;
+      }
+    }
+    td {
+      border-left: 1px solid #E7BDFF;
+      font-size: 12px;
+      font-weight: normal;
+      &:first-child {
+        border-left: none;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+  #nav {
+    width: 100%;
+    margin: 15px 0;
+    @include flexbox();
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include justify-content(center);
+    a {
+      width: 15px;
+      height: 15px;
+      padding: 5px;
+      background-color: $light-purple;
+      border-radius: 2em;
+      color: $dark-purple;
+      font-size: 12px;
+      margin: 4px;
+      text-align: center;
+      text-decoration: none;
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
 }
 
