@@ -108,6 +108,10 @@ body {
       &:first-child {
         border: none;
       }
+      &:hover {
+        opacity: .8;
+        cursor: pointer;
+      }
     }
     td {
       border-left: 1px solid #E7BDFF;

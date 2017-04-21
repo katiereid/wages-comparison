@@ -62,6 +62,9 @@ body {
       border-left: 1px solid #350f52; }
       body table th:first-child {
         border: none; }
+      body table th:hover {
+        opacity: .8;
+        cursor: pointer; }
     body table td {
       border-left: 1px solid #E7BDFF;
       font-size: 12px;
