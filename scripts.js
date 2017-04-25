@@ -154,35 +154,60 @@ function MakeAllSortable() {
 
 //INCOMPLETE ROWS
 
-function RemoveEmpties() {                                                      //currently working on this!
-    // var table = document.getElementById('myTable');  // get the table element
-    // var rowsTotal = table.rows.length;
-    // // var tableRows = table.rows;
-    //
-    // for (var i = 0; i < rowsTotal; i++) {
-    //     var currentRow = table.rows[i];
-    //     var emptyCells = currentRow.find("td.def:empty)");
-    //
-    //     console.log(emptyCells);
-    // }
+function RemoveEmpties() {                                                   //  note:only works on a page by page basis - don't have ability to filter through the whole table
+    var table = document.getElementById('myTable');  // get the table element
+    var rowsTotal = table.rows.length;
 
-    $("table tr").each(function() {
-        var cell = $.trim($(this).find('td').text());
-        if (cell.length == 0){
-            console.log('empty');
-            $(this).css('display : none');
+    for (i = 1; i < rowsTotal; i++) {
+        maleSal = table.rows[i].cells[9].innerHTML;
+        femaleSal = table.rows[i].cells[12].innerHTML;
+        if (maleSal == 0 || femaleSal == 0) {
+            table.rows[i].style.display = "none";
         }
-    });
+    }
+}
+
+
+//FILTERING   note: these only work on a page by page basis - don't have ability to filter through the whole table
+function filterFunctionMen() {
+    var table = document.getElementById('myTable');  // get the table element
+    var rowsTotal = table.rows.length;
+
+    for (i = 1; i < rowsTotal; i++) {
+        maleSal = table.rows[i].cells[9].innerHTML;
+        femaleSal = table.rows[i].cells[12].innerHTML;
+        if ((maleSal == 0 || femaleSal == 0) || (maleSal >= femaleSal)) {
+            table.rows[i].style.display = "none";
+        }
+    }
+}
+
+function filterFunctionWomen() {
+    var table = document.getElementById('myTable');  // get the table element
+    var rowsTotal = table.rows.length;
+
+    for (i = 1; i < rowsTotal; i++) {
+        maleSal = table.rows[i].cells[9].innerHTML;
+        femaleSal = table.rows[i].cells[12].innerHTML;
+        if ((maleSal == 0 || femaleSal == 0) || (femaleSal >= MaleSal)) {
+            table.rows[i].style.display = "none";
+        }
+    }
 }
 
 
 $(document).ready(function(){
     CreateTableFromJSON();
     MakeAllSortable();
-    // $('#removeEmpties').click(function() {          not yet functional
-    //     RemoveEmpties();
-    //     }
-    // );
+    $('#removeEmpties').click(function() {
+        RemoveEmpties();
+    });
+    $('#btnMen').click(function() {
+        filterFunctionMen();
+    });
+    $('#btnWomen').click(function() {
+        filterFunctionWomen();
+    });
 });
 
 
