@@ -2,12 +2,13 @@
   "name": "wages-comparison",
   "version": "1.0.0",
   "description": "code test ",
-  "main": "scripts.js",
+  "main": "./bin/www",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
   "dependencies": {},
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/katiereid/wages-comparison.git"
