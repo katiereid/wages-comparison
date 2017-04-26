@@ -28,12 +28,7 @@ function CreateTableFromJSON() {
         var th = document.createElement("th");      // TABLE HEADER.
         tr.appendChild(th);
     }
-
-    // for (var i = 0; i < col; i++) {
-    //     var th = document.createElement("th");      // TABLE HEADER
-    //     tr.appendChild(th);
-    // }
-
+    
     // ADD JSON DATA TO THE TABLE AS ROWS.
     for (var i = 0; i < tableInfo.data.length; i++) {
         tr = table.insertRow(-1);
@@ -42,7 +37,6 @@ function CreateTableFromJSON() {
             tableCell.innerHTML = (tableInfo.data[i][[j]]);
         }
     }
-
 
     //HIDE EXTRA COLUMNS and REPLACE HEADER TEXT todo: make this more efficient!
 
