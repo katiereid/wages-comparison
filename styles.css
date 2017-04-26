@@ -25,14 +25,15 @@ body {
     -moz-align-items: center;
     -ms-align-items: center;
     align-items: center;
-    -webkit-justify-content: space-between;
-    -moz-justify-content: space-between;
-    -ms-justify-content: space-between;
-    justify-content: space-between;
-    -ms-flex-pack: space-between; }
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
+    justify-content: space-around;
+    -ms-flex-pack: space-around; }
     body .table-options button {
       width: 200px;
       height: 40px;
+      margin: 8px;
       background-color: #F4E3FF;
       border: 1px solid #350f52;
       border-radius: 2px;

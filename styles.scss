@@ -67,10 +67,11 @@ body {
     @include flex-direction(row);
     @include flex-wrap(wrap);
     @include align-items(center);
-    @include justify-content(space-between);
+    @include justify-content(space-around);
     button {
       width: 200px;
       height: 40px;
+      margin: 8px;
       background-color: $light-purple;
       border: 1px solid $dark-purple;
       border-radius: 2px;
